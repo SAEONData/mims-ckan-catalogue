@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        saeon=ckanext.saeon.plugin:ExampleIDatasetFormPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    

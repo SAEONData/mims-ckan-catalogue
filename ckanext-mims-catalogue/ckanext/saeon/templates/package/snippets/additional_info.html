@@ -1,0 +1,173 @@
+<section class="additional-info">
+  <h3><i class="fa fa-info-circle"></i> {{ _('Metadata') }}</h3>  
+  <table class="table table-bordered table-dataset">
+    <tbody>
+      {% block package_additional_info %}
+
+          {% block extras scoped %}
+
+          <tr class="info">
+            <th colspan="2">Identifier</th>
+
+            <tr rel="dc:relation" resource="_:extra{{ i }}">
+              <th scope="row" class="dataset-label" property="rdfs:label">{{ "Accession ID" }}</th>
+              <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "accession-id") }}</td>
+            </tr>
+         
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Unique resource identifier" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "unique-resource-identifier") }}</td>
+            </tr>
+
+          <tr class="info">
+              <th colspan="2">Citation information</th>
+              {% set creators = h.get_formatted_contributors(pkg_dict.extras, "creators") %}
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Creators" }}</th>  
+                  <td class="dataset-details" property="rdf:value">
+                    <table class="table table-striped table-bordered table-condensed">
+                    {% for creator in creators %}
+                        <tr>
+                        <td>
+                        {% for item in creator %}
+                          {{ item }}</br>
+                        {% endfor %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </table>
+                  </td>  
+              </tr>          
+          </tr>
+
+          {% set publisher = h.get_formatted_contributors(pkg_dict.extras, "publisher") %}
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Publisher" }}</th>
+            <td class="dataset-details" property="rdf:value">
+              <table class="table table-striped table-bordered table-condensed">
+                {% for pub in publisher %}
+                    <tr>
+                    <td>
+                    {% for item in pub %}
+                      {{ item }}</br>
+                    {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor %}
+                </table>
+            </td>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Publication date" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "publication-date") }}</td>
+          </tr>
+
+          <tr class="info">
+            <th colspan="2">Contributors</th>
+              {% set contributors = h.get_formatted_contributors(pkg_dict.extras, "contributors") %}
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Contributors" }}</th>
+                <td class="dataset-details" property="rdf:value">
+                  <table class="table table-striped table-bordered table-condensed">
+                    {% for contrib in contributors %}
+                        <tr>
+                        <td>
+                        {% for item in contrib %}
+                          {{ item }}</br>
+                        {% endfor %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </table>
+                </td>
+              </tr>
+          </tr>
+
+          {% set point_of_contact = h.get_formatted_contributors(pkg_dict.extras, "point-of-contact") %}
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Point of contact" }}</th>
+            <td class="dataset-details" property="rdf:value">
+              <table class="table table-striped table-bordered table-condensed">
+                {% for contrib in point_of_contact %}
+                    <tr>
+                    <td>
+                    {% for item in contrib %}
+                      {{ item }}</br>
+                    {% endfor %}
+                    </td>
+                  </tr>         
+                {% endfor %}
+                </table>
+            </td>
+          </tr>
+
+          <tr class="info">
+            <th colspan="2">Methods</th>
+                <tr rel="dc:relation" resource="_:extra{{ i }}">
+                  <th scope="row" class="dataset-label" property="rdfs:label">{{ "Lineage" }}</th>
+                  <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "lineage") }}</td>
+                </tr>
+          </tr>
+
+          <tr class="info">
+            <th colspan="2">Dataset Themes</th>
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Topic category" }}</th>
+                <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "topic-category") }}</td>
+              </tr>
+          </tr>
+
+          <tr class="info">
+            <th colspan="2">Coverage Information</th>          
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box east longitude" }}</th>
+                <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-east-long") }}</td>
+              </tr>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box north latitude" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-north-lat") }}</td>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box south latitude" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-south-lat") }}</td>
+          </tr>
+
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box west longitude" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-west-long") }}</td>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Temporal extent begin time" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "temporal-extent-begin") }}</td>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Temporal extent start time" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "temporal-extent-end") }}</td>
+          </tr>
+
+          <tr class="info">
+            <th colspan="2">Access Information</th>                
+              <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "License" }}</th>
+                <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "licence") }}</td>
+              </tr>
+          </tr>
+
+          {% endblock %}
+
+
+      {% endblock %}
+    </tbody>
+  </table>
+</section>
