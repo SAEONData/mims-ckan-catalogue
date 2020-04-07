@@ -1,5 +1,10 @@
 {% extends "page.html" %}
 
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="/mims_theme.css" />
+{% endblock %}
+
 {% set pkg = c.pkg_dict or pkg_dict %}
 
 {% block breadcrumb_content_selected %} class="active"{% endblock %}
@@ -58,7 +63,7 @@
         {% if pkg.organization %}
           {% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
           {% set org_link = h.url_for(controller='organization', action='read', id=pkg.organization.name) %}
-          <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+          <!-- <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5> -->
         {% endif %}
         {% if col_link is defined %}
           <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_name }}</a></h5>
@@ -66,4 +71,8 @@
       </div>
     {% endif %}
   {% endblock %}
+{% endblock %}
+
+
+{% block primary_content %}
 {% endblock %}

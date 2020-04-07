@@ -5,7 +5,7 @@
 {% block pre_primary %}
   <div class="container single-column">
     
-    {%  snippet "package/snippets/nav_tabs.html", pkg=pkg %}
+    {# %  snippet "package/snippets/nav_tabs.html", pkg=pkg % #}
     
     {% block package_description %}
         {{ super() }}
@@ -19,7 +19,7 @@
           {% endif %}
           </div>
         {% endblock %}
-      </div>
+
 
     {% endblock %}
 
@@ -39,22 +39,7 @@
     {% block package_additional_info %}
       {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
     {% endblock %}
-
-
-    {# % block dataset_feedback %}
-      {% snippet "package/snippets/community_feedback.html", pkg=pkg %}
-    {% endblock %}
-    
-    {% snippet "snippets/social_inline.html" % #}
-
- 
   </div>
-
-  <!--
-  <script>mobileTable();</script>
-  -->
-
 {% endblock %}
-
 {% block secondary %}
 {% endblock %}
