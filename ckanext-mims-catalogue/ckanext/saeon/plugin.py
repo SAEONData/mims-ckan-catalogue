@@ -108,6 +108,7 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
     plugins.implements(plugins.IConfigurer, inherit=False)
     plugins.implements(plugins.IDatasetForm, inherit=False)
     plugins.implements(plugins.ITemplateHelpers, inherit=False)
+    plugins.implements(plugins.IFacets)
 
     # These record how many times methods that this plugin's methods are
     # called, for testing purposes.
@@ -123,7 +124,10 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
     def update_config(self, config):
         # Add this plugin's templates dir to CKAN's extra_template_paths, so
         # that CKAN will use this plugin's custom templates.
+        tk.add_public_directory(config, 'public')
         tk.add_template_directory(config, 'templates')
+        tk.add_resource('fanstatic', 'saeon')
+        tk.add_resource('public', 'saeon_styles')
 
     def get_helpers(self):
         return {
@@ -234,3 +238,28 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
     # legacy support for the deprecated method works.
     def check_data_dict(self, data_dict, schema=None):
         ExampleIDatasetFormPlugin.num_times_check_data_dict_called += 1
+
+    # IFacets
+
+    def _update_facets(self, facets_dict):
+        facets_dict.clear()
+        #facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
+        #facets_dict['groups'] = plugins.toolkit._('Thematic Areas')
+        facets_dict['organization'] = plugins.toolkit._('Publisher')
+
+
+        return facets_dict
+
+    def dataset_facets(self, facets_dict, package_type):
+        """Update the facets used on dataset search pages."""
+        return self._update_facets(facets_dict)
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        """Update the facets used on group search pages."""
+        return self._update_facets(facets_dict)
+
+    def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
+        """Update the facets used on organization search pages."""
+
+        return self._update_facets(facets_dict)
+
