@@ -1,0 +1,25 @@
+
+{% block styles %}
+  <link rel="stylesheet" href="/style.css" />
+{% endblock %}
+
+{% block header_wrapper %}
+
+<header class="mims-header" role="banner">
+      {# The .header-image class hides the main text and uses image replacement for the title #}
+      <hgroup>
+        <a class="logo" href="{{ h.url_for('home.index') }}"><img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+          <span><strong>Marine Information</strong><br>Management System</span>
+      </hgroup>
+      <nav id="navigation" role="navigation">
+        <div class="menu-top-menu-container">
+            <ul class="nav nav-pills">
+                {{ h.build_nav_main(
+                  ('home', _('Home')),
+                  ('search', _('Datasets')),
+                ) }}
+            </ul>
+        </div> 
+      </nav>
+  </header>
+{% endblock %}
