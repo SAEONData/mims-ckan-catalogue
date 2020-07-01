@@ -19,8 +19,7 @@
           <tr rel="dc:relation" resource="_:extra{{ i }}">
             <th scope="row" class="dataset-label" property="rdfs:label">{{ "Related Identifiers" }}</th>
             <td class="dataset-details" property="rdf:value">
-              {% set url_lnk = h.get_specific_extra(pkg_dict.extras, "unique-resource-identifier") %}
-              <a href={{ url_lnk }} >{{ url_lnk }}</a></td>
+              {{ h.get_specific_extra(pkg_dict.extras, "unique-resource-identifier") }}</td>
             </tr>
 
           <tr class="info">
