@@ -277,7 +277,6 @@ class SpatialHarvester(HarvesterBase):
         contributors = []
         point_of_contact = []
         for contact in iso_values['responsible-organisation']:
-            print(contact)
             if contact['role'] == 'originator':
                 creators.append(contact)
             elif contact['role'] == 'publisher':
@@ -292,13 +291,6 @@ class SpatialHarvester(HarvesterBase):
         extras['contributors'] = contributors
         extras['point-of-contact'] = point_of_contact          
 
-        for iso_val in iso_values:
-            print(iso_val)
-            print(iso_values[iso_val])
-            print('--')
-            print('\n')
-
-        extras['machester'] = 'united'
         if len(iso_values.get('progress', [])):
             extras['progress'] = iso_values['progress'][0]
         else:
@@ -309,7 +301,7 @@ class SpatialHarvester(HarvesterBase):
         else:
             extras['resource-type'] = ''
 
-        extras['licence'] = iso_values.get('use-constraints', '')
+        extras['licence'] = iso_values.get('use-constraints', '')[0]
 
         def _extract_first_license_url(licences):
             for licence in licences:
@@ -326,7 +318,6 @@ class SpatialHarvester(HarvesterBase):
 
         # Metadata license ID check for package
         use_constraints = iso_values.get('use-constraints')
-        print("usage constraints!!!!!{}".format(use_constraints))
         if use_constraints:
 
             context = {'model': model, 'session': model.Session, 'user': self._get_user_name()}
@@ -546,7 +537,6 @@ class SpatialHarvester(HarvesterBase):
 
             iso_parser = ISODocument(harvest_object.content)
             iso_values = iso_parser.read_values()
-            print("JJJJJDFDFFDFDJDF!!!@@$#!!!")
         except Exception, e:
             self._save_object_error('Error parsing ISO document for object {0}: {1}'.format(harvest_object.id, str(e)),
                                     harvest_object, 'Import')

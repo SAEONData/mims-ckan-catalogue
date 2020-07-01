@@ -246,6 +246,7 @@ class ExampleIDatasetFormPlugin(plugins.SingletonPlugin,
         #facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
         #facets_dict['groups'] = plugins.toolkit._('Thematic Areas')
         facets_dict['organization'] = plugins.toolkit._('Publisher')
+        facets_dict['licence'] = plugins.toolkit._('License')
 
 
         return facets_dict
