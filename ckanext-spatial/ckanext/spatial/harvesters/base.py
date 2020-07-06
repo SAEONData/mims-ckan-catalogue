@@ -290,7 +290,26 @@ class SpatialHarvester(HarvesterBase):
         extras['creators'] = creators
         extras['publisher'] = publishers
         extras['contributors'] = contributors
-        extras['point-of-contact'] = point_of_contact          
+        extras['point-of-contact'] = point_of_contact
+
+        def check_kw_type(kw_pref):
+            kw_types = {'project':0,'geographic-location':0,'instrument':0}
+            val = None
+            if kw_pref in kw_types:
+                val = kw_pref
+            return val
+
+        def clean_kw(kw_list):
+            kw = kw_list[0]
+            if len(kw_list) > 1:
+                if 'place | keyword' in kw_list[1]:
+                    kw = kw_list[2]
+            return kw
+
+        for kw in iso_values['keywords'][0]['keyword']:
+            kw_prefix = kw.split(':')[0]
+            if check_kw_type(kw_prefix):
+                extras[kw_prefix] = clean_kw(kw.split(':')[1:])
 
         if len(iso_values.get('progress', [])):
             extras['progress'] = iso_values['progress'][0]
