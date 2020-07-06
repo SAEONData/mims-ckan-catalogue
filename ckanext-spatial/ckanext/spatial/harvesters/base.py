@@ -3,6 +3,7 @@ import cgitb
 import warnings
 import urllib2
 import sys
+import math
 import logging
 from string import Template
 from urlparse import urlparse
@@ -370,7 +371,6 @@ class SpatialHarvester(HarvesterBase):
             extras['bbox-north-lat'] = bbox['north']
             extras['bbox-south-lat'] = bbox['south']
             extras['bbox-west-long'] = bbox['west']
-
             try:
                 xmin = float(bbox['west'])
                 xmax = float(bbox['east'])
@@ -384,7 +384,20 @@ class SpatialHarvester(HarvesterBase):
 
                 # Some publishers define the same two corners for the bbox (ie a point),
                 # that causes problems in the search if stored as polygon
-                if xmin == xmax or ymin == ymax:
+                def truncate(a):
+                    factor = 10.0 ** 5
+                    t = math.trunc(a * factor) / factor
+                    return t
+
+                micro_extent = False
+                diff_1 = truncate(abs(float(bbox['north']) - float(bbox['south'])))
+                diff_2 = truncate(abs(float(bbox['east']) - float(bbox['west'])))
+
+                if (diff_1 <= 0.0001) and \
+                        (diff_2 <= 0.0001):
+                    micro_extent = True
+
+                if micro_extent or xmin == xmax or ymin == ymax:
                     extent_string = Template('{"type": "Point", "coordinates": [$x, $y]}').substitute(
                         x=xmin, y=ymin
                     )
