@@ -1,6 +1,7 @@
 {% extends "package/read_base.html" %}
 
 {% set pkg = c.pkg_dict %}
+{% set title = pkg.title or pkg.name %}
 
 {% block pre_primary %}
   <div class="container single-column">
@@ -8,7 +9,33 @@
     {# %  snippet "package/snippets/nav_tabs.html", pkg=pkg % #}
     
     {% block package_description %}
-        {{ super() }}
+        {% if pkg.private %}
+          <span class="dataset-private label label-inverse pull-right">
+            <i class="fa fa-lock"></i>
+            {{ _('Private') }}
+          </span>
+        {% endif %}
+        {% block package_archive_notice %}
+          {% if is_activity_archive %}
+            <div class="alert alert-danger">
+              {% trans url=h.url_for('dataset.read', id=pkg.id) %}
+              You're currently viewing an old version of this dataset. To see the
+              current version, click <a href="{{ url }}">here</a>.
+              {% endtrans %}
+            </div>
+          {% endif %}
+        {% endblock %}
+        <h1>
+          {% block page_heading %}
+            {{ title }}
+            {% if pkg.state.startswith('draft') %}
+              [{{ _('Draft') }}]
+            {% endif %}
+            {% if pkg.state == 'deleted' %}
+              [{{ _('Deleted') }}]
+            {% endif %}
+          {% endblock %}
+        </h1>
 
         {% block package_notes %}
             <div class="notes embedded-content dataset-notes">
