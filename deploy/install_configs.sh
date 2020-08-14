@@ -2,11 +2,11 @@ CKAN_INSTALL_DIR="/home/bmcalister/workspace/mims-catalogue/ckan/ckan/"
 
 echo "Copying configs in place"
 
-if [ -f "$CKAN_INSTALL_DIR/contrib/docker/solr/solrconfig.xml" ]; then
-   cp ./ckan-configs/solrconfig.xml $CKAN_INSTALL_DIR/contrib/docker/solr/
-else
-   echo  "$CKAN_INSTALL_DIR does not exist"
-fi
+#if [ -f "$CKAN_INSTALL_DIR/contrib/docker/solr/solrconfig.xml" ]; then
+#   cp ./ckan-configs/solrconfig.xml $CKAN_INSTALL_DIR/contrib/docker/solr/
+#else
+#   echo  "$CKAN_INSTALL_DIR does not exist"
+#fi
 
 if [ -f "$CKAN_INSTALL_DIR/ckan/config/solr/schema.xml" ]; then
     cp ./ckan-configs/schema.xml $CKAN_INSTALL_DIR/ckan/config/solr/
