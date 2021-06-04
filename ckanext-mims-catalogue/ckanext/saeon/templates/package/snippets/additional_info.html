@@ -126,19 +126,19 @@
           <tr class="info">
             <th colspan="2">Coverage Information</th>          
               <tr rel="dc:relation" resource="_:extra{{ i }}">
-                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box east longitude" }}</th>
-                <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-east-long") }}</td>
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box north latitude" }}</th>
+                <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-north-lat") }}</td>
               </tr>
-          </tr>
-
-          <tr rel="dc:relation" resource="_:extra{{ i }}">
-            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box north latitude" }}</th>
-            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-north-lat") }}</td>
           </tr>
 
           <tr rel="dc:relation" resource="_:extra{{ i }}">
             <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box south latitude" }}</th>
             <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-south-lat") }}</td>
+          </tr>
+
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Bounding box east longitude" }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "bbox-east-long") }}</td>
           </tr>
 
 
@@ -148,12 +148,12 @@
           </tr>
 
           <tr rel="dc:relation" resource="_:extra{{ i }}">
-            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Temporal extent begin time" }}</th>
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Start time" }}</th>
             <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "temporal-extent-begin") }}</td>
           </tr>
 
           <tr rel="dc:relation" resource="_:extra{{ i }}">
-            <th scope="row" class="dataset-label" property="rdfs:label">{{ "Temporal extent start time" }}</th>
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ "End time" }}</th>
             <td class="dataset-details" property="rdf:value">{{ h.get_specific_extra(pkg_dict.extras, "temporal-extent-end") }}</td>
           </tr>
 
