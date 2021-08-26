@@ -17,3 +17,4 @@ docker exec -it ckan bash -c " source /usr/lib/ckan/venv/bin/activate &&
                                rm -rf ckanext-mims-theme/ &&
                                cp -r mims-ckan-catalogue/ckanext-mims-catalogue/ ckanext-mims-theme/ &&
                                cd ckanext-mims-theme/ && python setup.py develop"
+# cp mims-ckan-catalogue/ckanext-mims-catalogue/ckanext/saeon/public/mimsfavicon.ico ckan/ckan/public/base/images/ckan.ico
